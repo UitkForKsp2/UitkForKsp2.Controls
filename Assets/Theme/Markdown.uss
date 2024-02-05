@@ -1,0 +1,100 @@
+.h1 {
+    font-size: 34px;
+}
+.unity-label.h1 {
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: -20px;
+}
+.unity-label.h1.md-code {
+    margin: 0;
+}
+
+.h2 {
+    font-size: 30px;
+}
+.unity-label.h2 {
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: -18px;
+}
+.unity-label.h2.md-code {
+    margin: 0;
+}
+
+.h3 {
+    font-size: 24px;
+}
+.unity-label.h3 {
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: -14px;
+}
+.unity-label.h3.md-code {
+    margin: 0;
+}
+
+.h4 {
+    font-size: 20px;
+}
+.unity-label.h4 {
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: -13px;
+}
+.unity-label.h4.md-code {
+    margin: 0;
+}
+
+.h5 {
+    font-size: 20px;
+}
+.unity-label.h5 {
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: -12px;
+}
+.unity-label.h5.md-code {
+    margin: 0;
+}
+
+.h6 {
+    font-size: 16px;
+}
+.unity-label.h6 {
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: -11px;
+}
+.unity-label.h6.md-code {
+    margin: 0;
+}
+
+.unity-label.p {
+    margin-right: -10px;
+    padding-left: 0;
+}
+.unity-label.p.md-code {
+    margin: 0;
+}
+
+.md-italic {
+    -unity-font-style: italic;
+}
+
+.md-bold {
+    -unity-font-style: bold;
+}
+
+.md-italic.md-bold {
+    -unity-font-style: bold-and-italic;
+}
+
+.md-code {
+    background-color: #22262e;
+    -unity-text-align: middle-center;
+}
+
+.md-code-block {
+    background-color: #22262e;
+}
