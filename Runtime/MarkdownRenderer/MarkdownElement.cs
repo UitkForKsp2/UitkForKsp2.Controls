@@ -17,8 +17,8 @@ namespace UitkForKsp2.Controls.MarkdownRenderer
         
         public MarkdownElement()
         {
-            _pipeline = new MarkdownPipelineBuilder().UsePipeTables().UseGridTables().UseAutoLinks()
-                .UseTaskLists().UseListExtras().Build();
+            _pipeline = new MarkdownPipelineBuilder().UseAutoLinks()
+                .UseTaskLists().UseListExtras().UseCustomContainers().Build();
             style.flexDirection = FlexDirection.Column;
         }
 

@@ -37,20 +37,14 @@ namespace UitkForKsp2.Controls.MarkdownRenderer.Formatters
             _headingSize = headingSize;
         }
 
-        public override bool ApplyToButtonTopLevel => true;
+        public override FormatMode Mode => FormatMode.ElementLevel;
 
-        public override void BeginApplyingFormatting(TextElement element, bool linkMode)
+        public override void BeginApplyingFormatting(TextElement element)
         {
-            if (linkMode)
-            {
-            }
-            else
-            {
-                element.AddToClassList($"h{_headingSize.ToString(CultureInfo.InvariantCulture)}");
-            }
+            element.AddToClassList($"h{_headingSize.ToString(CultureInfo.InvariantCulture)}");
         }
 
-        public override void EndApplyingFormatting(TextElement element, bool linkMode)
+        public override void EndApplyingFormatting(TextElement element)
         {
         }
     }

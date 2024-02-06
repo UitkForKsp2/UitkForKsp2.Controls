@@ -10,20 +10,13 @@ namespace UitkForKsp2.Controls.MarkdownRenderer.Formatters
         {
         }
 
-        public override bool ApplyToButtonTopLevel => true;
-
-        public override void BeginApplyingFormatting(TextElement element, bool linkMode)
+        public override FormatMode Mode => FormatMode.ElementLevel;
+        public override void BeginApplyingFormatting(TextElement element)
         {
-            if (linkMode)
-            {
-            }
-            else
-            {
-                element.AddToClassList("md-code");
-            }
+            element.AddToClassList("md-code");
         }
 
-        public override void EndApplyingFormatting(TextElement element, bool linkMode)
+        public override void EndApplyingFormatting(TextElement element)
         {
         }
     }

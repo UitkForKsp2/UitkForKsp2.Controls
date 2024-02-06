@@ -12,7 +12,7 @@ namespace UitkForKsp2.Controls.MarkdownRenderer.ObjectRenderers.InlineRenderers
         {
             using var handle = renderer.PushCode();
             SerialLogger.Log($"Content: `{obj.Content}`");
-            renderer.WriteText(obj.Content, false);
+            renderer.WriteText(obj.Content,false);
         }
     }
 }

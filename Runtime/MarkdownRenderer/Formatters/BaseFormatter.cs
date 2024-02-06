@@ -4,9 +4,15 @@ namespace UitkForKsp2.Controls.MarkdownRenderer.Formatters
 {
     public abstract class BaseFormatter
     {
-        public abstract bool ApplyToButtonTopLevel { get; }
-        public abstract void BeginApplyingFormatting(TextElement element, bool linkMode);
+        public enum FormatMode
+        {
+            ElementLevel,
+            TextLevel
+        }
 
-        public abstract void EndApplyingFormatting(TextElement element, bool linkMode);
+        public abstract FormatMode Mode { get; }
+        public abstract void BeginApplyingFormatting(TextElement element);
+
+        public abstract void EndApplyingFormatting(TextElement element);
     }
 }

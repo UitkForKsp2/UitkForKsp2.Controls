@@ -11,26 +11,16 @@ namespace UitkForKsp2.Controls.MarkdownRenderer.Formatters
         {
         }
 
-        public override bool ApplyToButtonTopLevel => false;
+        public override FormatMode Mode => FormatMode.TextLevel;
 
-        public override void BeginApplyingFormatting(TextElement element, bool linkMode)
+        public override void BeginApplyingFormatting(TextElement element)
         {
-            if (linkMode)
-            {
-                element.text += "<i>";
-            }
-            else
-            {
-                element.AddToClassList("md-italic");
-            }
+            element.text += "<i>";
         }
 
-        public override void EndApplyingFormatting(TextElement element, bool linkMode)
+        public override void EndApplyingFormatting(TextElement element)
         {
-            if (linkMode)
-            {
-                element.text += "</i>";
-            }
+            element.text += "</i>";
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
+using System.Text;
 using JetBrains.Annotations;
 using Markdig.Renderers;
 using Markdig.Syntax;
@@ -19,8 +20,9 @@ namespace UitkForKsp2.Controls.MarkdownRenderer
     {
         
         private List<BlockInfo> _blockStack = new();
-
         public BlockInfo CurrentBlock => _blockStack.Last();
+
+        private int _indentLevel = 0;
         
         private VisualElementRenderer()
         {
@@ -41,8 +43,6 @@ namespace UitkForKsp2.Controls.MarkdownRenderer
         [PublicAPI]
         public class BlockInfo : IDisposable
         {
-            
-            
             public VisualElement MainBlock;
 
 
@@ -60,47 +60,52 @@ namespace UitkForKsp2.Controls.MarkdownRenderer
             public void Dispose()
             {
                 Renderer.PopBlock();
+                if (_currentTextElement == null) return;
                 for (var i = _formatters.Count-1; i >= 0; i--)
                 {
-                    if (_currentTextElement != null)
-                    {
-                        _formatters[i].EndApplyingFormatting(_currentTextElement, _inLink);
-                    }
+                    _formatters[i].EndApplyingFormatting(_currentTextElement);
                 }
             }
 
             public FormatterHandle PushFormatter(BaseFormatter formatter)
             {
-                if (!_inLink)
+                if (!_inLink && formatter.Mode == BaseFormatter.FormatMode.ElementLevel)
                 {
-                    _wasDirtied = true;
-                    _currentTextElement = null;
+                    Dirty();
                 }
-                else
-                {
-                    formatter.BeginApplyingFormatting(_currentTextElement, true);
+                if (formatter.Mode == BaseFormatter.FormatMode.TextLevel &&_currentTextElement != null) {
+                    formatter.BeginApplyingFormatting(_currentTextElement);
                 }
 
                 _formatters.Add(formatter);
-                SerialLogger.Log($"Pushing Formatter: {formatter.GetType()}");
                 return new FormatterHandle(this);
             }
 
             public void PopFormatter()
             {
-                var last = _formatters.Last(); 
-                SerialLogger.Log($"Popping Formatter: {last.GetType()} {_inLink}");
-                if (!_inLink)
+                var last = _formatters.Last();
+                if (_currentTextElement != null)
                 {
-                    _wasDirtied = true;
-                    _currentTextElement = null;
+                    last.EndApplyingFormatting(_currentTextElement);
                 }
-                else if (_currentTextElement != null)
-                {
-                    last.EndApplyingFormatting(_currentTextElement, true);
-                }
-
                 _formatters.RemoveAt(_formatters.Count - 1);
+                if (!_inLink && last.Mode == BaseFormatter.FormatMode.ElementLevel)
+                {
+                    Dirty();
+                }
+            }
+
+            public void Dirty()
+            {
+                _wasDirtied = true;
+                if (_currentTextElement != null)
+                {
+                    for (var i = _formatters.Count-1; i >= 0; i--)
+                    {
+                        _formatters[i].EndApplyingFormatting(_currentTextElement);
+                    }
+                }
+                _currentTextElement = null;
             }
 
             private void EnsureTextElement()
@@ -119,49 +124,60 @@ namespace UitkForKsp2.Controls.MarkdownRenderer
                     };
                     MainBlock.Add(_currentContainerElement);
                 }
-
                 _currentTextElement = new Label
                 {
                     enableRichText = true
                 };
+                _currentTextElement.AddToClassList("md-text");
                 foreach (var formatter in _formatters)
                 {
-                    formatter.BeginApplyingFormatting(_currentTextElement, false);
+                    formatter.BeginApplyingFormatting(_currentTextElement);
                 }
                 _currentContainerElement.Add(_currentTextElement);
             }
+
+            private static bool EndsWithBreakChar(string text) => text.EndsWith(" ");
             private void WriteToken(string token)
             {
                 EnsureTextElement();
-                // _currentTextElement.text += token;
                 _currentTextElement.text += token;
-                if (!token.EndsWith(' ')) return;
-                _currentTextElement = null;
-                _wasDirtied = true;
+                if (EndsWithBreakChar(token)) Dirty();
+            }
+            
+            
+            private static int IndexOfBreakChar(string text)
+            {
+                for (var i = 0; i < text.Length; i++)
+                {
+                    if (text[i] == ' ')
+                    {
+                        return i;
+                    }
+                }
+                return -1;
             }
             
             private List<string> Tokenize(string text)
             {
                 List<string> tokens = new();
                 int idx;
-                while ((idx = text.IndexOf(' ')) != -1)
+                while ((idx = IndexOfBreakChar(text)) != -1)
                 {
                     var token = text[..(idx + 1)];
                     text = text[(idx + 1)..];
                     tokens.Add(token);
                 }
-
+            
                 if (!string.IsNullOrEmpty(text))
                 {
                     tokens.Add(text);
                 }
-
+            
                 return tokens;
             }
             
-            public void RenderText(string text, bool split=true)
+            public void RenderText(string text, bool split)
             {
-                SerialLogger.Log($"RenderText: `{text}` (dirtied: {_wasDirtied})");
                 if (!_inLink)
                 {
                     if (split)
@@ -175,8 +191,6 @@ namespace UitkForKsp2.Controls.MarkdownRenderer
                     {
                         EnsureTextElement();
                         _currentTextElement.text += text;
-                        _currentTextElement = null;
-                        _wasDirtied = true;
                     }
                 }
                 else
@@ -207,7 +221,7 @@ namespace UitkForKsp2.Controls.MarkdownRenderer
                 ((Button)_currentTextElement).clicked += () => MarkdownApi.HandleLink(linkAddress);
                 foreach (var formatter in _formatters)
                 {
-                    formatter.BeginApplyingFormatting(_currentTextElement, !formatter.ApplyToButtonTopLevel);
+                    formatter.BeginApplyingFormatting(_currentTextElement);
                 }
                 _currentContainerElement.Add(_currentTextElement);
                 
@@ -222,27 +236,24 @@ namespace UitkForKsp2.Controls.MarkdownRenderer
                 {
                     if (_currentTextElement != null)
                     {
-                        _formatters[i].EndApplyingFormatting(_currentTextElement, _inLink);
+                        _formatters[i].EndApplyingFormatting(_currentTextElement);
                     }
                 }
-                _wasDirtied = true;
-                _currentTextElement = null;
+                Dirty();
                 _inLink = false;
             }
 
             public void Newline()
             {
-                _wasDirtied = true;
+                Dirty();
                 _currentContainerElement = null;
-                _currentTextElement = null;
             }
 
             public void AddImage(string imageAddress, string altText="Image")
             {
                 
-                _wasDirtied = true;
+                Dirty();
                 _currentContainerElement = null;
-                _currentTextElement = null;
                 var imageContainer = new Image
                 {
                     scaleMode = ScaleMode.ScaleToFit
@@ -287,6 +298,7 @@ namespace UitkForKsp2.Controls.MarkdownRenderer
         {
             _blockStack.Clear();
             _blockStack.Add(new BlockInfo(root));
+            _indentLevel = 0;
         }
 
         public BlockInfo PushBlock(params string[] classes)
@@ -298,6 +310,14 @@ namespace UitkForKsp2.Controls.MarkdownRenderer
             }
             var newInfo = new BlockInfo(newBlock);
             CurrentBlock.AddChild(newInfo);
+            _blockStack.Add(newInfo);
+            return newInfo;
+        }
+
+        public BlockInfo AddBlock(VisualElement block, bool addAsChild=false)
+        {
+            var newInfo = new BlockInfo(block);
+            if (addAsChild) CurrentBlock.AddChild(newInfo);
             _blockStack.Add(newInfo);
             return newInfo;
         }
@@ -318,13 +338,23 @@ namespace UitkForKsp2.Controls.MarkdownRenderer
             }
         }
         
-        public void WriteTextRaw(string text, bool split=true)
+        public void WriteTextRaw(string text, bool split = true)
         {
             CurrentBlock.RenderText(text,split);
         }
-        public void WriteText(string text, bool split=true)
+        public void WriteText(string text, bool split = true)
         {
-            WriteTextRaw(text.Replace($"<", "<\u2000B"),split);
+            WriteTextRaw(text.Replace($"<", "<\u200B"),split);
+        }
+
+        public void Dirty()
+        {
+            CurrentBlock.Dirty();
+        }
+
+        public void HardLineBreak()
+        {
+            CurrentBlock.Newline();
         }
 
         public FormatterHandle PushHeading(int level) =>
@@ -337,5 +367,39 @@ namespace UitkForKsp2.Controls.MarkdownRenderer
         public void StartLink(string address) => CurrentBlock.StartLink(address);
         public void EndLink() => CurrentBlock.EndLink();
         public void Image(string path, string alt="Image") => CurrentBlock.AddImage(path, alt);
+
+        public IndentationHandle Indent()
+        {
+            return new IndentationHandle(++_indentLevel);
+        }
+        
+        public class IndentationHandle : IDisposable
+        {
+            public IndentationHandle(int indentation)
+            {
+                Indentation = indentation;
+            }
+
+            public int Indentation { get; }
+
+            public void Dispose()
+            {
+                Renderer._indentLevel -= 1;
+            }
+        }
+        
+        public string GetRawLines(LeafBlock block)
+        {
+            var lines = block.Lines;
+            var slices = lines.Lines;
+            StringBuilder sb = new();
+            for (var i = 0; i < lines.Count; i++)
+            {
+                sb.Append(slices[i].ToString());
+                if (i != lines.Count - 1) sb.Append('\n');
+            }
+
+            return sb.ToString();
+        }
     }
 }
