@@ -912,7 +912,7 @@
         </member>
         <member name="T:Markdig.Extensions.MediaLinks.MediaLinkExtension">
             <summary>
-            Extension for extending image Markdown links in case a video or an audio file is linked and output proper link.
+            Extension for extending image text links in case a video or an audio file is linked and output proper link.
             </summary>
             <seealso cref="T:Markdig.IMarkdownExtension" />
         </member>
@@ -939,7 +939,7 @@
         </member>
         <member name="T:Markdig.Extensions.SelfPipeline.SelfPipelineExtension">
             <summary>
-            Extension to enable SelfPipeline, to configure a Markdown parsing/convertion to HTML automatically 
+            Extension to enable SelfPipeline, to configure a text parsing/convertion to HTML automatically 
             from an embedded special tag in the input text <code>&lt;!--markdig:extensions--&gt;</code> where extensions is a string
             that specifies the extensions to use for the pipeline as exposed by <see cref="M:Markdig.MarkdownExtensions.Configure(Markdig.MarkdownPipelineBuilder,System.String)"/> extension method
             on the <see cref="T:Markdig.MarkdownPipelineBuilder"/>. This extension will invalidate all other extensions and will override them.
@@ -965,7 +965,7 @@
         </member>
         <member name="M:Markdig.Extensions.SelfPipeline.SelfPipelineExtension.CreatePipelineFromInput(System.String)">
             <summary>
-            Creates a pipeline automatically configured from an input markdown based on the presence of the configuration tag.
+            Creates a pipeline automatically configured from an input text based on the presence of the configuration tag.
             </summary>
             <param name="inputText">The input text.</param>
             <returns>The pipeline configured from the input</returns>
@@ -1428,12 +1428,12 @@
         </member>
         <member name="T:Markdig.Extensions.Yaml.YamlFrontMatterExtension">
             <summary>
-            Extension to discard a YAML frontmatter at the beginning of a Markdown document.
+            Extension to discard a YAML frontmatter at the beginning of a text document.
             </summary>
         </member>
         <member name="P:Markdig.Extensions.Yaml.YamlFrontMatterExtension.AllowInMiddleOfDocument">
             <summary>
-            Allows the <see cref="T:Markdig.Extensions.Yaml.YamlFrontMatterBlock"/> to appear in the middle of the markdown file.
+            Allows the <see cref="T:Markdig.Extensions.Yaml.YamlFrontMatterBlock"/> to appear in the middle of the text file.
             </summary>
         </member>
         <member name="T:Markdig.Extensions.Yaml.YamlFrontMatterHtmlRenderer">
@@ -1450,7 +1450,7 @@
         </member>
         <member name="P:Markdig.Extensions.Yaml.YamlFrontMatterParser.AllowInMiddleOfDocument">
             <summary>
-            Allows the <see cref="T:Markdig.Extensions.Yaml.YamlFrontMatterBlock"/> to appear in the middle of the markdown file.
+            Allows the <see cref="T:Markdig.Extensions.Yaml.YamlFrontMatterBlock"/> to appear in the middle of the text file.
             </summary>
         </member>
         <member name="M:Markdig.Extensions.Yaml.YamlFrontMatterParser.#ctor">
@@ -1887,7 +1887,7 @@
         </member>
         <member name="T:Markdig.Helpers.LinkHelper">
             <summary>
-            Helpers to parse Markdown links.
+            Helpers to parse text links.
             </summary>
         </member>
         <member name="T:Markdig.Helpers.NewLine">
@@ -2379,125 +2379,125 @@
             <param name="pipeline">The pipeline used to parse the document.</param>
             <param name="renderer">The renderer.</param>
         </member>
-        <member name="T:Markdig.Markdown">
+        <member name="T:Markdig.text">
             <summary>
-            Provides methods for parsing a Markdown string to a syntax tree and converting it to other formats.
+            Provides methods for parsing a text string to a syntax tree and converting it to other formats.
             </summary>
         </member>
-        <member name="M:Markdig.Markdown.Normalize(System.String,Markdig.Renderers.Normalize.NormalizeOptions,Markdig.MarkdownPipeline,Markdig.MarkdownParserContext)">
+        <member name="M:Markdig.text.Normalize(System.String,Markdig.Renderers.Normalize.NormalizeOptions,Markdig.MarkdownPipeline,Markdig.MarkdownParserContext)">
             <summary>
-            Normalizes the specified markdown to a normalized markdown text.
+            Normalizes the specified text to a normalized text text.
             </summary>
-            <param name="markdown">The markdown.</param>
+            <param name="text">The text.</param>
             <param name="options">The normalize options</param>
             <param name="pipeline">The pipeline.</param>
             <param name="context">A parser context used for the parsing.</param>
-            <returns>A normalized markdown text.</returns>
+            <returns>A normalized text text.</returns>
         </member>
-        <member name="M:Markdig.Markdown.Normalize(System.String,System.IO.TextWriter,Markdig.Renderers.Normalize.NormalizeOptions,Markdig.MarkdownPipeline,Markdig.MarkdownParserContext)">
+        <member name="M:Markdig.text.Normalize(System.String,System.IO.TextWriter,Markdig.Renderers.Normalize.NormalizeOptions,Markdig.MarkdownPipeline,Markdig.MarkdownParserContext)">
             <summary>
-            Normalizes the specified markdown to a normalized markdown text.
+            Normalizes the specified text to a normalized text text.
             </summary>
-            <param name="markdown">The markdown.</param>
+            <param name="text">The text.</param>
             <param name="writer">The destination <see cref="T:System.IO.TextWriter"/> that will receive the result of the conversion.</param>
             <param name="options">The normalize options</param>
             <param name="pipeline">The pipeline.</param>
             <param name="context">A parser context used for the parsing.</param>
-            <returns>A normalized markdown text.</returns>
+            <returns>A normalized text text.</returns>
         </member>
-        <member name="M:Markdig.Markdown.ToHtml(System.String,Markdig.MarkdownPipeline,Markdig.MarkdownParserContext)">
+        <member name="M:Markdig.text.ToHtml(System.String,Markdig.MarkdownPipeline,Markdig.MarkdownParserContext)">
             <summary>
-            Converts a Markdown string to HTML.
+            Converts a text string to HTML.
             </summary>
-            <param name="markdown">A Markdown text.</param>
+            <param name="text">A text text.</param>
             <param name="pipeline">The pipeline used for the conversion.</param>
             <param name="context">A parser context used for the parsing.</param>
             <returns>The result of the conversion</returns>
-            <exception cref="T:System.ArgumentNullException">if markdown variable is null</exception>
+            <exception cref="T:System.ArgumentNullException">if text variable is null</exception>
         </member>
-        <member name="M:Markdig.Markdown.ToHtml(Markdig.Syntax.MarkdownDocument,Markdig.MarkdownPipeline)">
+        <member name="M:Markdig.text.ToHtml(Markdig.Syntax.MarkdownDocument,Markdig.MarkdownPipeline)">
             <summary>
-            Converts a Markdown document to HTML.
+            Converts a text document to HTML.
             </summary>
-            <param name="document">A Markdown document.</param>
+            <param name="document">A text document.</param>
             <param name="pipeline">The pipeline used for the conversion.</param>
             <returns>The result of the conversion</returns>
-            <exception cref="T:System.ArgumentNullException">if markdown document variable is null</exception>
+            <exception cref="T:System.ArgumentNullException">if text document variable is null</exception>
         </member>
-        <member name="M:Markdig.Markdown.ToHtml(Markdig.Syntax.MarkdownDocument,System.IO.TextWriter,Markdig.MarkdownPipeline)">
+        <member name="M:Markdig.text.ToHtml(Markdig.Syntax.MarkdownDocument,System.IO.TextWriter,Markdig.MarkdownPipeline)">
             <summary>
-            Converts a Markdown document to HTML.
+            Converts a text document to HTML.
             </summary>
-            <param name="document">A Markdown document.</param>
+            <param name="document">A text document.</param>
             <param name="writer">The destination <see cref="T:System.IO.TextWriter"/> that will receive the result of the conversion.</param>
             <param name="pipeline">The pipeline used for the conversion.</param>
             <returns>The result of the conversion</returns>
-            <exception cref="T:System.ArgumentNullException">if markdown document variable is null</exception>
+            <exception cref="T:System.ArgumentNullException">if text document variable is null</exception>
         </member>
-        <member name="M:Markdig.Markdown.ToHtml(System.String,System.IO.TextWriter,Markdig.MarkdownPipeline,Markdig.MarkdownParserContext)">
+        <member name="M:Markdig.text.ToHtml(System.String,System.IO.TextWriter,Markdig.MarkdownPipeline,Markdig.MarkdownParserContext)">
             <summary>
-            Converts a Markdown string to HTML and output to the specified writer.
+            Converts a text string to HTML and output to the specified writer.
             </summary>
-            <param name="markdown">A Markdown text.</param>
+            <param name="text">A text text.</param>
             <param name="writer">The destination <see cref="T:System.IO.TextWriter"/> that will receive the result of the conversion.</param>
             <param name="pipeline">The pipeline used for the conversion.</param>
             <param name="context">A parser context used for the parsing.</param>
-            <returns>The Markdown document that has been parsed</returns>
+            <returns>The text document that has been parsed</returns>
             <exception cref="T:System.ArgumentNullException">if reader or writer variable are null</exception>
         </member>
-        <member name="M:Markdig.Markdown.Convert(System.String,Markdig.Renderers.IMarkdownRenderer,Markdig.MarkdownPipeline,Markdig.MarkdownParserContext)">
+        <member name="M:Markdig.text.Convert(System.String,Markdig.Renderers.IMarkdownRenderer,Markdig.MarkdownPipeline,Markdig.MarkdownParserContext)">
             <summary>
-            Converts a Markdown string using a custom <see cref="T:Markdig.Renderers.IMarkdownRenderer"/>.
+            Converts a text string using a custom <see cref="T:Markdig.Renderers.IMarkdownRenderer"/>.
             </summary>
-            <param name="markdown">A Markdown text.</param>
-            <param name="renderer">The renderer to convert Markdown to.</param>
+            <param name="text">A text text.</param>
+            <param name="renderer">The renderer to convert text to.</param>
             <param name="pipeline">The pipeline used for the conversion.</param>
             <param name="context">A parser context used for the parsing.</param>
-            <exception cref="T:System.ArgumentNullException">if markdown or writer variable are null</exception>
+            <exception cref="T:System.ArgumentNullException">if text or writer variable are null</exception>
         </member>
-        <member name="M:Markdig.Markdown.Parse(System.String,System.Boolean)">
+        <member name="M:Markdig.text.Parse(System.String,System.Boolean)">
             <summary>
-            Parses the specified markdown into an AST <see cref="T:Markdig.Syntax.MarkdownDocument"/>
+            Parses the specified text into an AST <see cref="T:Markdig.Syntax.MarkdownDocument"/>
             </summary>
-            <param name="markdown">The markdown text.</param>
+            <param name="text">The text text.</param>
             <param name="trackTrivia">Whether to parse trivia such as whitespace, extra heading characters and unescaped string values.</param>
-            <returns>An AST Markdown document</returns>
-            <exception cref="T:System.ArgumentNullException">if markdown variable is null</exception>
+            <returns>An AST text document</returns>
+            <exception cref="T:System.ArgumentNullException">if text variable is null</exception>
         </member>
-        <member name="M:Markdig.Markdown.Parse(System.String,Markdig.MarkdownPipeline,Markdig.MarkdownParserContext)">
+        <member name="M:Markdig.text.Parse(System.String,Markdig.MarkdownPipeline,Markdig.MarkdownParserContext)">
             <summary>
-            Parses the specified markdown into an AST <see cref="T:Markdig.Syntax.MarkdownDocument"/>
+            Parses the specified text into an AST <see cref="T:Markdig.Syntax.MarkdownDocument"/>
             </summary>
-            <param name="markdown">The markdown text.</param>
+            <param name="text">The text text.</param>
             <param name="pipeline">The pipeline used for the parsing.</param>
             <param name="context">A parser context used for the parsing.</param>
-            <returns>An AST Markdown document</returns>
-            <exception cref="T:System.ArgumentNullException">if markdown variable is null</exception>
+            <returns>An AST text document</returns>
+            <exception cref="T:System.ArgumentNullException">if text variable is null</exception>
         </member>
-        <member name="M:Markdig.Markdown.ToPlainText(System.String,System.IO.TextWriter,Markdig.MarkdownPipeline,Markdig.MarkdownParserContext)">
+        <member name="M:Markdig.text.ToPlainText(System.String,System.IO.TextWriter,Markdig.MarkdownPipeline,Markdig.MarkdownParserContext)">
             <summary>
-            Converts a Markdown string to Plain text and output to the specified writer.
+            Converts a text string to Plain text and output to the specified writer.
             </summary>
-            <param name="markdown">A Markdown text.</param>
+            <param name="text">A text text.</param>
             <param name="writer">The destination <see cref="T:System.IO.TextWriter"/> that will receive the result of the conversion.</param>
             <param name="pipeline">The pipeline used for the conversion.</param>
             <param name="context">A parser context used for the parsing.</param>
-            <returns>The Markdown document that has been parsed</returns>
+            <returns>The text document that has been parsed</returns>
             <exception cref="T:System.ArgumentNullException">if reader or writer variable are null</exception>
         </member>
-        <member name="M:Markdig.Markdown.ToPlainText(System.String,Markdig.MarkdownPipeline,Markdig.MarkdownParserContext)">
+        <member name="M:Markdig.text.ToPlainText(System.String,Markdig.MarkdownPipeline,Markdig.MarkdownParserContext)">
             <summary>
-            Converts a Markdown string to Plain text by using a <see cref="T:System.IO.StringWriter"/> .
+            Converts a text string to Plain text by using a <see cref="T:System.IO.StringWriter"/> .
             </summary>
-            <param name="markdown">A Markdown text.</param>
+            <param name="text">A text text.</param>
             <param name="pipeline">The pipeline used for the conversion.</param>
             <param name="context">A parser context used for the parsing.</param>
             <returns>The result of the conversion</returns>
-            <exception cref="T:System.ArgumentNullException">if markdown variable is null</exception>
+            <exception cref="T:System.ArgumentNullException">if text variable is null</exception>
         </member>
         <member name="T:Markdig.MarkdownExtensions">
             <summary>
-            Provides extension methods for <see cref="T:Markdig.MarkdownPipelineBuilder"/> to enable several Markdown extensions.
+            Provides extension methods for <see cref="T:Markdig.MarkdownPipelineBuilder"/> to enable several text extensions.
             </summary>
         </member>
         <member name="M:Markdig.MarkdownExtensions.Use``1(Markdig.MarkdownPipelineBuilder)">
@@ -2547,11 +2547,11 @@
         </member>
         <member name="M:Markdig.MarkdownExtensions.UseSelfPipeline(Markdig.MarkdownPipelineBuilder,System.String,System.String)">
             <summary>
-            Uses the self pipeline extension that will detect the pipeline to use from the markdown input that contains a special tag. See <see cref="T:Markdig.Extensions.SelfPipeline.SelfPipelineExtension"/>
+            Uses the self pipeline extension that will detect the pipeline to use from the text input that contains a special tag. See <see cref="T:Markdig.Extensions.SelfPipeline.SelfPipelineExtension"/>
             </summary>
             <param name="pipeline">The pipeline.</param>
             <param name="defaultTag">The default tag to use to match the self pipeline configuration. By default, <see cref="F:Markdig.Extensions.SelfPipeline.SelfPipelineExtension.DefaultTag"/>, meaning that the HTML tag will be &lt;--markdig:extensions--&gt;</param>
-            <param name="defaultExtensions">The default extensions to configure if no pipeline setup was found from the Markdown document</param>
+            <param name="defaultExtensions">The default extensions to configure if no pipeline setup was found from the text document</param>
             <returns>The modified pipeline</returns>
         </member>
         <member name="M:Markdig.MarkdownExtensions.UsePragmaLines(Markdig.MarkdownPipelineBuilder)">
@@ -2765,7 +2765,7 @@
         </member>
         <member name="M:Markdig.MarkdownExtensions.DisableHtml(Markdig.MarkdownPipelineBuilder)">
             <summary>
-            This will disable the HTML support in the markdown processor (for constraint/safe parsing).
+            This will disable the HTML support in the text processor (for constraint/safe parsing).
             </summary>
             <param name="pipeline">The pipeline.</param>
             <returns>The modified pipeline</returns>
@@ -2802,7 +2802,7 @@
         </member>
         <member name="T:Markdig.MarkdownParserContext">
             <summary>
-            Provides a context that can be used as part of parsing Markdown documents.
+            Provides a context that can be used as part of parsing text documents.
             </summary>
         </member>
         <member name="P:Markdig.MarkdownParserContext.Properties">
@@ -2817,7 +2817,7 @@
         </member>
         <member name="T:Markdig.MarkdownPipeline">
             <summary>
-            This class is the Markdown pipeline build from a <see cref="T:Markdig.MarkdownPipelineBuilder"/>.
+            This class is the text pipeline build from a <see cref="T:Markdig.MarkdownPipelineBuilder"/>.
             <para>An instance of <see cref="T:Markdig.MarkdownPipeline"/> is immutable, thread-safe, and should be reused when parsing multiple inputs.</para>
             </summary>
         </member>
@@ -2841,11 +2841,11 @@
             <summary>
             Allows to setup a <see cref="T:Markdig.Renderers.IMarkdownRenderer"/>.
             </summary>
-            <param name="renderer">The markdown renderer to setup</param>
+            <param name="renderer">The text renderer to setup</param>
         </member>
         <member name="T:Markdig.MarkdownPipelineBuilder">
             <summary>
-            This class allows to modify the pipeline to parse and render a Markdown document.
+            This class allows to modify the pipeline to parse and render a text document.
             </summary>
             <remarks>NOTE: A pipeline is not thread-safe.</remarks>
         </member>
@@ -3889,21 +3889,21 @@
             <summary>
             Delegates called when processing a document
             </summary>
-            <param name="document">The markdown document.</param>
+            <param name="document">The text document.</param>
         </member>
         <member name="T:Markdig.Parsers.MarkdownParser">
             <summary>
-            The Markdown parser.
+            The text parser.
             </summary>
         </member>
         <member name="M:Markdig.Parsers.MarkdownParser.Parse(System.String,Markdig.MarkdownPipeline,Markdig.MarkdownParserContext)">
             <summary>
-            Parses the specified markdown into an AST <see cref="T:Markdig.Syntax.MarkdownDocument"/>
+            Parses the specified text into an AST <see cref="T:Markdig.Syntax.MarkdownDocument"/>
             </summary>
-            <param name="text">A Markdown text</param>
+            <param name="text">A text text</param>
             <param name="pipeline">The pipeline used for the parsing.</param>
             <param name="context">A parser context used for the parsing.</param>
-            <returns>An AST Markdown document</returns>
+            <returns>An AST text document</returns>
             <exception cref="T:System.ArgumentNullException">if reader variable is null</exception>
         </member>
         <member name="M:Markdig.Parsers.MarkdownParser.FixupZero(System.String)">
@@ -4049,7 +4049,7 @@
         </member>
         <member name="T:Markdig.Renderers.HtmlRenderer">
             <summary>
-            Default HTML renderer for a Markdown <see cref="T:Markdig.Syntax.MarkdownDocument"/> object.
+            Default HTML renderer for a text <see cref="T:Markdig.Syntax.MarkdownDocument"/> object.
             </summary>
             <seealso cref="T:Markdig.Renderers.TextRendererBase`1" />
         </member>
@@ -4247,21 +4247,21 @@
             <summary>
             Tries the get <see cref="T:Markdig.Renderers.Html.HtmlAttributes"/> stored on a <see cref="T:Markdig.Syntax.MarkdownObject"/>.
             </summary>
-            <param name="obj">The markdown object.</param>
+            <param name="obj">The text object.</param>
             <returns>The attached html attributes or null if not found</returns>
         </member>
         <member name="M:Markdig.Renderers.Html.HtmlAttributesExtensions.GetAttributes(Markdig.Syntax.IMarkdownObject)">
             <summary>
             Gets or creates the <see cref="T:Markdig.Renderers.Html.HtmlAttributes"/> stored on a <see cref="T:Markdig.Syntax.MarkdownObject"/>
             </summary>
-            <param name="obj">The markdown object.</param>
+            <param name="obj">The text object.</param>
             <returns>The attached html attributes</returns>
         </member>
         <member name="M:Markdig.Renderers.Html.HtmlAttributesExtensions.SetAttributes(Markdig.Syntax.IMarkdownObject,Markdig.Renderers.Html.HtmlAttributes)">
             <summary>
             Sets <see cref="T:Markdig.Renderers.Html.HtmlAttributes" /> to the <see cref="T:Markdig.Syntax.MarkdownObject" />
             </summary>
-            <param name="obj">The markdown object.</param>
+            <param name="obj">The text object.</param>
             <param name="attributes">The attributes to attach.</param>
         </member>
         <member name="T:Markdig.Renderers.Html.HtmlBlockRenderer">
@@ -4272,7 +4272,7 @@
         </member>
         <member name="T:Markdig.Renderers.Html.HtmlObjectRenderer`1">
             <summary>
-            A base class for HTML rendering <see cref="T:Markdig.Syntax.Block"/> and <see cref="T:Markdig.Syntax.Inlines.Inline"/> Markdown objects.
+            A base class for HTML rendering <see cref="T:Markdig.Syntax.Block"/> and <see cref="T:Markdig.Syntax.Inlines.Inline"/> text objects.
             </summary>
             <typeparam name="TObject">The type of the object.</typeparam>
             <seealso cref="T:Markdig.Renderers.IMarkdownObjectRenderer" />
@@ -4414,8 +4414,8 @@
             Accepts the specified <see cref="T:Markdig.Syntax.MarkdownObject"/>.
             </summary>
             <param name="renderer">The renderer.</param>
-            <param name="objectType">The <see cref="T:System.Type"/> of the Markdown object.</param>
-            <returns><c>true</c> If this renderer is accepting to render the specified Markdown object</returns>
+            <param name="objectType">The <see cref="T:System.Type"/> of the text object.</param>
+            <returns><c>true</c> If this renderer is accepting to render the specified text object</returns>
         </member>
         <member name="M:Markdig.Renderers.IMarkdownObjectRenderer.Write(Markdig.Renderers.RendererBase,Markdig.Syntax.MarkdownObject)">
             <summary>
@@ -4426,7 +4426,7 @@
         </member>
         <member name="T:Markdig.Renderers.IMarkdownRenderer">
             <summary>
-            Base interface for a renderer for a Markdown <see cref="T:Markdig.Syntax.MarkdownDocument"/>.
+            Base interface for a renderer for a text <see cref="T:Markdig.Syntax.MarkdownDocument"/>.
             </summary>
         </member>
         <member name="E:Markdig.Renderers.IMarkdownRenderer.ObjectWriteBefore">
@@ -4446,14 +4446,14 @@
         </member>
         <member name="M:Markdig.Renderers.IMarkdownRenderer.Render(Markdig.Syntax.MarkdownObject)">
             <summary>
-            Renders the specified markdown object.
+            Renders the specified text object.
             </summary>
-            <param name="markdownObject">The markdown object.</param>
+            <param name="markdownObject">The text object.</param>
             <returns>The result of the rendering.</returns>
         </member>
         <member name="T:Markdig.Renderers.MarkdownObjectRenderer`2">
             <summary>
-            A base class for rendering <see cref="T:Markdig.Syntax.Block" /> and <see cref="T:Markdig.Syntax.Inlines.Inline" /> Markdown objects.
+            A base class for rendering <see cref="T:Markdig.Syntax.Block" /> and <see cref="T:Markdig.Syntax.Inlines.Inline" /> text objects.
             </summary>
             <typeparam name="TRenderer">The type of the renderer.</typeparam>
             <typeparam name="TObject">The type of the object.</typeparam>
@@ -4466,10 +4466,10 @@
         </member>
         <member name="M:Markdig.Renderers.MarkdownObjectRenderer`2.Write(`0,`1)">
             <summary>
-            Writes the specified Markdown object to the renderer.
+            Writes the specified text object to the renderer.
             </summary>
             <param name="renderer">The renderer.</param>
-            <param name="obj">The markdown object.</param>
+            <param name="obj">The text object.</param>
         </member>
         <member name="T:Markdig.Renderers.Normalize.CodeBlockRenderer">
             <summary>
@@ -4548,7 +4548,7 @@
         </member>
         <member name="T:Markdig.Renderers.Normalize.NormalizeObjectRenderer`1">
             <summary>
-            A base class for Normalize rendering <see cref="T:Markdig.Syntax.Block"/> and <see cref="T:Markdig.Syntax.Inlines.Inline"/> Markdown objects.
+            A base class for Normalize rendering <see cref="T:Markdig.Syntax.Block"/> and <see cref="T:Markdig.Syntax.Inlines.Inline"/> text objects.
             </summary>
             <typeparam name="TObject">The type of the object.</typeparam>
             <seealso cref="T:Markdig.Renderers.IMarkdownObjectRenderer" />
@@ -4595,7 +4595,7 @@
         </member>
         <member name="T:Markdig.Renderers.Normalize.NormalizeRenderer">
             <summary>
-            Default HTML renderer for a Markdown <see cref="T:Markdig.Syntax.MarkdownDocument"/> object.
+            Default HTML renderer for a text <see cref="T:Markdig.Syntax.MarkdownDocument"/> object.
             </summary>
             <seealso cref="T:Markdig.Renderers.TextRendererBase`1" />
         </member>
@@ -4674,9 +4674,9 @@
         </member>
         <member name="M:Markdig.Renderers.RendererBase.Write(Markdig.Syntax.MarkdownObject)">
             <summary>
-            Writes the specified Markdown object.
+            Writes the specified text object.
             </summary>
-            <param name="obj">The Markdown object to write to this renderer.</param>
+            <param name="obj">The text object to write to this renderer.</param>
         </member>
         <member name="T:Markdig.Renderers.Roundtrip.CodeBlockRenderer">
             <summary>
@@ -4761,17 +4761,17 @@
         </member>
         <member name="T:Markdig.Renderers.Roundtrip.RoundtripObjectRenderer`1">
             <summary>
-            A base class for Normalize rendering <see cref="T:Markdig.Syntax.Block"/> and <see cref="T:Markdig.Syntax.Inlines.Inline"/> Markdown objects.
+            A base class for Normalize rendering <see cref="T:Markdig.Syntax.Block"/> and <see cref="T:Markdig.Syntax.Inlines.Inline"/> text objects.
             </summary>
             <typeparam name="TObject">The type of the object.</typeparam>
             <seealso cref="T:Markdig.Renderers.IMarkdownObjectRenderer" />
         </member>
         <member name="T:Markdig.Renderers.Roundtrip.RoundtripRenderer">
             <summary>
-            Markdown renderer honoring trivia for a  <see cref="T:Markdig.Syntax.MarkdownDocument"/> object.
+            text renderer honoring trivia for a  <see cref="T:Markdig.Syntax.MarkdownDocument"/> object.
             </summary>
             Ensure to call the <see cref="M:Markdig.MarkdownExtensions.EnableTrackTrivia(Markdig.MarkdownPipelineBuilder)"/> extension method when
-            parsing markdown to have trivia available for rendering.
+            parsing text to have trivia available for rendering.
         </member>
         <member name="M:Markdig.Renderers.Roundtrip.RoundtripRenderer.#ctor(System.IO.TextWriter)">
             <summary>
@@ -4813,9 +4813,9 @@
         </member>
         <member name="M:Markdig.Renderers.TextRendererBase.Render(Markdig.Syntax.MarkdownObject)">
             <summary>
-            Renders the specified markdown object (returns the <see cref="P:Markdig.Renderers.TextRendererBase.Writer"/> as a render object).
+            Renders the specified text object (returns the <see cref="P:Markdig.Renderers.TextRendererBase.Writer"/> as a render object).
             </summary>
-            <param name="markdownObject">The markdown object.</param>
+            <param name="markdownObject">The text object.</param>
             <returns></returns>
         </member>
         <member name="T:Markdig.Renderers.TextRendererBase`1">
@@ -5312,7 +5312,7 @@
         </member>
         <member name="P:Markdig.Syntax.IFencedBlock.UnescapedInfo">
             <summary>
-            Non-escaped <see cref="P:Markdig.Syntax.IFencedBlock.Info"/> exactly as in source markdown.
+            Non-escaped <see cref="P:Markdig.Syntax.IFencedBlock.Info"/> exactly as in source text.
             Trivia: only parsed when <see cref="P:Markdig.MarkdownPipeline.TrackTrivia"/> is enabled, otherwise
             <see cref="F:Markdig.Helpers.StringSlice.Empty"/>.
             </summary>
@@ -5332,7 +5332,7 @@
         </member>
         <member name="P:Markdig.Syntax.IFencedBlock.UnescapedArguments">
             <summary>
-            Non-escaped <see cref="P:Markdig.Syntax.IFencedBlock.Arguments"/> exactly as in source markdown.
+            Non-escaped <see cref="P:Markdig.Syntax.IFencedBlock.Arguments"/> exactly as in source text.
             Trivia: only parsed when <see cref="P:Markdig.MarkdownPipeline.TrackTrivia"/> is enabled, otherwise
             <see cref="F:Markdig.Helpers.StringSlice.Empty"/>.
             </summary>
@@ -5373,7 +5373,7 @@
         </member>
         <member name="T:Markdig.Syntax.IMarkdownObject">
             <summary>
-            Base interface for a the Markdown syntax tree
+            Base interface for a the text syntax tree
             </summary>
         </member>
         <member name="M:Markdig.Syntax.IMarkdownObject.SetData(System.Object,System.Object)">
@@ -5958,7 +5958,7 @@
         </member>
         <member name="P:Markdig.Syntax.Inlines.LinkInline.IsAutoLink">
             <summary>
-            Gets or sets a boolean indicating whether the inline link was parsed using markdown syntax or was automatic recognized.
+            Gets or sets a boolean indicating whether the inline link was parsed using text syntax or was automatic recognized.
             </summary>
         </member>
         <member name="T:Markdig.Syntax.Inlines.LiteralInline">
@@ -6263,7 +6263,7 @@
         </member>
         <member name="T:Markdig.Syntax.MarkdownDocument">
             <summary>
-            The root Markdown document.
+            The root text document.
             </summary>
             <seealso cref="T:Markdig.Syntax.ContainerBlock" />
         </member>
@@ -6285,7 +6285,7 @@
         </member>
         <member name="T:Markdig.Syntax.MarkdownObject">
             <summary>
-            Base implementation for a the Markdown syntax tree.
+            Base implementation for a the text syntax tree.
             </summary>
         </member>
         <member name="F:Markdig.Syntax.MarkdownObject._attachedDatas">
@@ -6355,37 +6355,37 @@
         </member>
         <member name="M:Markdig.Syntax.MarkdownObjectExtensions.Descendants(Markdig.Syntax.MarkdownObject)">
             <summary>
-            Iterates over the descendant elements for the specified markdown element, including <see cref="T:Markdig.Syntax.Block"/> and <see cref="T:Markdig.Syntax.Inlines.Inline"/>.
+            Iterates over the descendant elements for the specified text element, including <see cref="T:Markdig.Syntax.Block"/> and <see cref="T:Markdig.Syntax.Inlines.Inline"/>.
             <para>The descendant elements are returned in DFS-like order.</para>
             </summary>
-            <param name="markdownObject">The markdown object.</param>
+            <param name="markdownObject">The text object.</param>
             <returns>An iteration over the descendant elements</returns>
         </member>
         <member name="M:Markdig.Syntax.MarkdownObjectExtensions.Descendants``1(Markdig.Syntax.MarkdownObject)">
             <summary>
-            Iterates over the descendant elements for the specified markdown element, including <see cref="T:Markdig.Syntax.Block"/> and <see cref="T:Markdig.Syntax.Inlines.Inline"/> and filters by the type <typeparamref name="T"/>.
+            Iterates over the descendant elements for the specified text element, including <see cref="T:Markdig.Syntax.Block"/> and <see cref="T:Markdig.Syntax.Inlines.Inline"/> and filters by the type <typeparamref name="T"/>.
             <para>The descendant elements are returned in DFS-like order.</para>
             </summary>
             <typeparam name="T">Type to use for filtering the descendants</typeparam>
-            <param name="markdownObject">The markdown object.</param>
+            <param name="markdownObject">The text object.</param>
             <returns>An iteration over the descendant elements</returns>
         </member>
         <member name="M:Markdig.Syntax.MarkdownObjectExtensions.Descendants``1(Markdig.Syntax.Inlines.ContainerInline)">
             <summary>
-            Iterates over the descendant elements for the specified markdown <see cref="T:Markdig.Syntax.Inlines.Inline" /> element and filters by the type <typeparamref name="T"/>.
+            Iterates over the descendant elements for the specified text <see cref="T:Markdig.Syntax.Inlines.Inline" /> element and filters by the type <typeparamref name="T"/>.
             </summary>
             <typeparam name="T">Type to use for filtering the descendants</typeparam>
-            <param name="inline">The inline markdown object.</param>
+            <param name="inline">The inline text object.</param>
             <returns>
             An iteration over the descendant elements
             </returns>
         </member>
         <member name="M:Markdig.Syntax.MarkdownObjectExtensions.Descendants``1(Markdig.Syntax.ContainerBlock)">
             <summary>
-            Iterates over the descendant elements for the specified markdown <see cref="T:Markdig.Syntax.Block" /> element and filters by the type <typeparamref name="T"/>.
+            Iterates over the descendant elements for the specified text <see cref="T:Markdig.Syntax.Block" /> element and filters by the type <typeparamref name="T"/>.
             </summary>
             <typeparam name="T">Type to use for filtering the descendants</typeparam>
-            <param name="block">The markdown object.</param>
+            <param name="block">The text object.</param>
             <returns>
             An iteration over the descendant elements
             </returns>

@@ -22,23 +22,45 @@ namespace UitkForKsp2.Controls.MarkdownRenderer
             style.flexDirection = FlexDirection.Column;
         }
 
-        public MarkdownElement(string markdown, string rootPath) : this()
+        public MarkdownElement(string text, string rootPath) : this()
         {
-            _markdown = markdown;
+            _text = text;
             Build();
         }
         
-        public new class UxmlFactory : UxmlFactory<MarkdownElement>
+        public new class UxmlFactory : UxmlFactory<MarkdownElement,UxmlTraits>
         {
+        }
+
+        public new class UxmlTraits : VisualElement.UxmlTraits
+        {
+            private UxmlStringAttributeDescription _markdown = new()
+            {
+                name = "text",
+            };
+            public override IEnumerable<UxmlChildElementDescription> uxmlChildElementsDescription
+            {
+                get { yield break; }
+            }
+            public override void Init(VisualElement ve, IUxmlAttributes bag, CreationContext cc)
+            {
+                Label le;
+                base.Init(ve, bag, cc);
+                var ate = ve as MarkdownElement;
+
+                ate!.text = _markdown.GetValueFromBag(bag, cc);
+            }
         }
         
         
-        private string _markdown = string.Empty;
-
-        public string Markdown { get => _markdown;
+        private string _text = string.Empty;
+        
+        // Disable this because of the UI builder
+        // ReSharper disable once InconsistentNaming
+        public string text { get => _text;
             set
             {
-                _markdown = value;
+                _text = value;
                 Build();
             }
         }
@@ -47,7 +69,7 @@ namespace UitkForKsp2.Controls.MarkdownRenderer
         {
             // First we clear our children
             Clear();
-            var document = Markdig.Markdown.Parse(Markdown, _pipeline);
+            var document = Markdown.Parse(text, _pipeline);
             VisualElementRenderer.RenderInto(this, document);
         }
     }
