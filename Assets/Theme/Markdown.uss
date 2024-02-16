@@ -1,0 +1,166 @@
+.h1 {
+    font-size: 34px;
+}
+
+.unity-label.h1 {
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: -20px;
+}
+
+.unity-label.h1.md-code {
+    margin: 0;
+}
+
+.h2 {
+    font-size: 30px;
+}
+
+.unity-label.h2 {
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: -18px;
+}
+
+.unity-label.h2.md-code {
+    margin: 0;
+}
+
+.h3 {
+    font-size: 24px;
+}
+
+.unity-label.h3 {
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: -14px;
+}
+
+.unity-label.h3.md-code {
+    margin: 0;
+}
+
+.h4 {
+    font-size: 20px;
+}
+
+.unity-label.h4 {
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: -13px;
+}
+
+.unity-label.h4.md-code {
+    margin: 0;
+}
+
+.h5 {
+    font-size: 20px;
+}
+
+.unity-label.h5 {
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: -12px;
+}
+
+.unity-label.h5.md-code {
+    margin: 0;
+}
+
+.h6 {
+    font-size: 16px;
+}
+
+.unity-label.h6 {
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: -11px;
+}
+
+.unity-label.h6.md-code {
+    margin: 0;
+}
+
+.unity-label.p {
+    margin-right: -10px;
+    padding-left: 0;
+}
+
+.unity-label.p.md-code {
+    margin: 0;
+}
+
+.md-italic {
+    -unity-font-style: italic;
+}
+
+.md-bold {
+    -unity-font-style: bold;
+}
+
+.md-italic.md-bold {
+    -unity-font-style: bold-and-italic;
+}
+
+.md-code {
+    background-color: rgb(34, 38, 46);
+    -unity-text-align: middle-center;
+}
+
+.md-code-block {
+    background-color: rgb(34, 38, 46);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(25, 28, 34);
+    border-right-color: rgb(25, 28, 34);
+    border-top-color: rgb(25, 28, 34);
+    border-bottom-color: rgb(25, 28, 34);
+    border-radius: 3px;
+}
+
+.unity-label.md-text {
+    white-space: normal;
+}
+
+.md-code-label-container {
+    background-color: rgba(30, 33, 41, 0.5);
+    align-content: center;
+    align-items: center;
+    border-left-color: rgb(25, 28, 34);
+    border-right-color: rgb(25, 28, 34);
+    border-top-color: rgb(25, 28, 34);
+    border-bottom-color: rgb(25, 28, 34);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+}
+
+.md-copy-button {
+    font-size: 10px;
+}
+
+.list-bullet {
+    -unity-text-align: middle-left;
+}
+
+.quote-outside {
+    max-width: 4px;
+    min-width: 4px;
+}
+
+.quote-middle {
+    max-width: 4px;
+    min-width: 4px;
+    background-color: rgb(46, 53, 64);
+}
+
+.md-code-scroll.unity-scroll-view {
+    background-color: rgb(34, 38, 46);
+    border-radius: 3px;
+    border-width: 1px;
+    padding: 4px;
+}
